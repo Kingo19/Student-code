@@ -2,14 +2,8 @@ package com.techelevator;
 
 public class Exercise05_AcceptPackage {
 
-    /*
-    Scamper Shipping Company specializes in small, local deliveries.
-    The problems below ask you to implement logic if they can accept a package for delivery.
-
-    Note: all weights are in pounds, and all dimensions are in inches.
-     */
-
     // You can use these constants in your solutions.
+
     private final int MAX_WEIGHT_POUNDS = 40;
     private final int MAX_CUBIC_INCHES = 6912;
     private final int MAX_DIMENSION_INCHES = 66;
@@ -24,7 +18,7 @@ public class Exercise05_AcceptPackage {
     acceptPackage(50) ➔ false
      */
     public boolean acceptPackage(int weightPounds) {
-        return false;
+        return weightPounds <= MAX_WEIGHT_POUNDS;
     }
 
     /*
@@ -41,7 +35,8 @@ public class Exercise05_AcceptPackage {
     acceptPackage(50, 4, 5, 10) ➔ false
      */
     public boolean acceptPackage(int weightPounds, int lengthInches, int widthInches, int heightInches) {
-        return false;
+        int cubicInchs = lengthInches * widthInches * heightInches;
+        return weightPounds <= MAX_WEIGHT_POUNDS && cubicInchs <= MAX_CUBIC_INCHES;
     }
 
     /*
@@ -64,6 +59,13 @@ public class Exercise05_AcceptPackage {
     acceptPackage(50, 4, 5, 10, true) ➔ false
      */
     public boolean acceptPackage(int weightPounds, int lengthInches, int widthInches, int heightInches, boolean isSurchargePaid) {
-        return false;
+        if (isSurchargePaid) {
+            return acceptPackage(weightPounds, lengthInches, widthInches, heightInches);
+        } else {
+            return acceptPackage(weightPounds, lengthInches, widthInches, heightInches) &&
+                    lengthInches <= MAX_DIMENSION_INCHES &&
+                    widthInches <= MAX_DIMENSION_INCHES &&
+                    heightInches <= MAX_DIMENSION_INCHES;
+        }
     }
 }

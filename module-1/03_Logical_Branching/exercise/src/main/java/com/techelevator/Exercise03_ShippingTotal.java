@@ -2,16 +2,12 @@ package com.techelevator;
 
 public class Exercise03_ShippingTotal {
 
-    /*
-     * Scamper Shipping Company specializes in small, local deliveries.
-     * The problems below ask you to implement the logic to calculate a shipping
-     * amount for a package.
-     */
+//    you can use these constants in your solutions.
 
-    // You can use these constants in your solutions.
     private final int MAX_WEIGHT_POUNDS = 40;
     private final double UP_TO_40_LB_RATE = 0.50;
     private final double OVER_40_LB_RATE = 0.75;
+
 
     /*
      * Scamper Shipping Company charges $0.50 per pound for items up to and
@@ -25,7 +21,11 @@ public class Exercise03_ShippingTotal {
      * calculateShippingRate(45) ➔ 0.75
      */
     public double calculateShippingRate(int weightPounds) {
-        return 0.0;
+        if (weightPounds <= MAX_WEIGHT_POUNDS) {
+            return UP_TO_40_LB_RATE;
+        } else {
+            return OVER_40_LB_RATE;
+        }
     }
 
     /*
@@ -42,8 +42,10 @@ public class Exercise03_ShippingTotal {
      * calculateShippingTotal(40) ➔ 20.0
      * calculateShippingTotal(45) ➔ 33.75
      */
-    public double calculateShippingTotal(int weightPounds) {
-        return 0.0;
+        public double calculateShippingTotal(int weightPounds) {
+            double rate = calculateShippingRate(weightPounds);
+            return weightPounds * rate;
+
     }
 
     /*
@@ -65,7 +67,12 @@ public class Exercise03_ShippingTotal {
      * calculateShippingTotal(45, true) ➔ 30.375
      */
     public double calculateShippingTotal(int weightPounds, boolean hasDiscount) {
-        return 0.0;
+        double total = calculateShippingTotal(weightPounds);
+        if (hasDiscount){
+         // Apply a 10% discount
+            total *= 0.90;
+        }
+        return total;
     }
 
 }

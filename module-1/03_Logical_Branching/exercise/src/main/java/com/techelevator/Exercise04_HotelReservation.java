@@ -2,13 +2,6 @@ package com.techelevator;
 
 public class Exercise04_HotelReservation {
 
-    /*
-    Innovator's Inn is a new hotel chain with two simple rates:
-        $99.99 per night for stays of 1 or 2 nights
-        $89.99 per night for stays of 3 nights or more
-    The problems below ask you to implement the logic for determining a guest's total amount for their stay.
-     */
-
     // You can use these constants in your solutions.
     private final double DAILY_RATE = 99.99;
     private final double DISCOUNT_RATE = 89.99;
@@ -26,7 +19,11 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3) ➔ 269.97
      */
     public double calculateStayTotal(int numberOfNights) {
-        return 0.0;
+        if (numberOfNights <= 2) {
+            return numberOfNights * DAILY_RATE;
+        } else {
+            return numberOfNights * DISCOUNT_RATE;
+        }
     }
 
     /*
@@ -41,7 +38,12 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, true) ➔ 344.97
      */
     public double calculateStayTotal(int numOfTotalNights, boolean includesParking) {
-        return 0.0;
+        double baseTotal = calculateStayTotal(numOfTotalNights);
+        if (includesParking) {
+            return baseTotal + (numOfTotalNights * PARKING_RATE);
+        } else {
+            return baseTotal;
+        }
     }
 
     /*
@@ -61,6 +63,11 @@ public class Exercise04_HotelReservation {
     calculateStayTotal(3, true, true) ➔ 364.97
      */
     public double calculateStayTotal(int numOfTotalNights, boolean includesParking, boolean includesLateCheckout) {
-        return 0.0;
+        double baseTotal = calculateStayTotal(numOfTotalNights, includesParking);
+        if (includesLateCheckout) {
+            return baseTotal + LATE_CHECKOUT_FEE;
+        } else {
+            return baseTotal;
+        }
     }
 }

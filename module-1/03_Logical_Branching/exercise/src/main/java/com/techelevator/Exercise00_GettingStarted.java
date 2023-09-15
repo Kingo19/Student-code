@@ -16,14 +16,16 @@ public class Exercise00_GettingStarted {
     freezing temperature, rain is expected. So, you'll need to test whether precipitation is expected
     *and* the temperature is above freezing.
      */
-    public boolean isRainExpected(boolean precipitationExpected, int highTemperatureF) {
+
         // NOTE: This test fails because the next line handles the condition of a temperature
         // of 32 degrees improperly. If you run the unit tests, you'll see that when parameters
         // precipitationExpected:true and highTemperatureF:32 are passed in, the expected return
         // value is false, but this code returns true.
         // Modify the following line to change ">=" to ">" and re-run the test. It will pass.
 
-        boolean isAboveFreezing = highTemperatureF >= FREEZING_TEMPERATURE_F;
+    public boolean isRainExpected(boolean precipitationExpected, int highTemperatureF) {
+
+        boolean isAboveFreezing = highTemperatureF > FREEZING_TEMPERATURE_F;
 
         if (precipitationExpected && isAboveFreezing) {
             return true;
@@ -31,4 +33,5 @@ public class Exercise00_GettingStarted {
             return false;
         }
     }
+
 }
