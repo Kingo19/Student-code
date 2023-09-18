@@ -24,9 +24,15 @@ public class Exercise05_Weather {
 	belowFreezing([-7, -3, 19, 35, 30])  → 4
 	belowFreezing([]) → 0
     */
-	public int belowFreezing(int[] dailyHighs) {
-		return 0;
-	}
+    public int belowFreezing(int[] dailyHighs) {
+        int count = 0;
+        for (int temperature : dailyHighs) {
+            if (temperature <= FREEZING_TEMPERATURE) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     /*
     GaleForce also needs to determine the hottest day when given an upcoming forecast.
@@ -43,7 +49,13 @@ public class Exercise05_Weather {
 	hottestDay([55]) → 55
     */
     public int hottestDay(int[] dailyHighs) {
-        return 0;
+        int maxTemperature = dailyHighs[0];
+        for (int i = 1; i < dailyHighs.length; i++) {
+            if (dailyHighs[i] > maxTemperature) {
+                maxTemperature = dailyHighs[i];
+            }
+        }
+        return maxTemperature;
     }
 
     /*
@@ -61,6 +73,14 @@ public class Exercise05_Weather {
 	fixTemperatures([]) → []
      */
     public int[] fixTemperatures(int[] temperatures) {
-        return new int[] {};
+        int[] fixedTemperatures = new int[temperatures.length];
+        for (int i = 0; i < temperatures.length; i++) {
+            if (i % 2 == 0) {
+                fixedTemperatures[i] = temperatures[i] + 2;
+            } else {
+                fixedTemperatures[i] = temperatures[i];
+            }
+        }
+        return fixedTemperatures;
     }
 }
