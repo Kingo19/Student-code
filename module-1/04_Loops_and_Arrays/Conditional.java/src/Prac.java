@@ -27,6 +27,18 @@ public class Prac {
         boolean g = accPkg(39, 56, 76, 32);
         System.out.println(g);
 
+        boolean h = pkgAcc(12, 4, 8, 10, 50);
+        System.out.println(h);
+
+        boolean k = storeOpen(10);
+        System.out.println(k);
+
+        boolean j = storeOpen(9, 'M');
+        System.out.println(j);
+
+        boolean l = storeOpen(7, 'T', true);
+        System.out.println(l);
+
 
     }
    public static boolean testScore(int score) {
@@ -103,4 +115,26 @@ public class Prac {
         return acc;
 
       }
+      public static boolean pkgAcc(int weight, int length, int width, int height, int surchargePaid) {
+        boolean sur = (weight <= 40 && (length * width * height <= 6912) && (surchargePaid == 50));
+            return sur;
+      }
+
+//      public static boolean for10k(int age, boolean earlyReg) {
+//        boolean ear = ((age >= 18) || (earlyReg));
+//        return ear;
+//      }
+
+    public static boolean storeOpen(int hour) {
+        boolean opnHr = (hour >=8 && hour <=17);
+        return opnHr;
+    }
+    public static boolean storeOpen(int hour, char day) {
+        boolean strOpn = ((hour >= 8 && hour <= 17) || (day == 'M' || day == 'W' || day == 'F'));
+        return strOpn;
+    }
+ public static boolean storeOpen(int hour, char day, boolean summer) {
+        boolean opnStr = (hour >=8 && hour <=17 && day == 'M' || day == 'W' || day == 'F' && summer);
+        return opnStr;
+ }
 }
