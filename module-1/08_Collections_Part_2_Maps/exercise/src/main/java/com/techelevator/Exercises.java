@@ -243,33 +243,17 @@ public class Exercises {
 
 		return integerCounts;
 
-	/*
-	 * Given an array of Strings, return a Map<String, Boolean> where each different String is a key and value
-	 * is true only if that String appears 2 or more times in the array.
-	 *
-	 * wordMultiple(["a", "b", "a", "c", "b"]) → {"b": true, "c": false, "a": true}
-	 * wordMultiple(["c", "b", "a"]) → {"b": false, "c": false, "a": false}
-	 * wordMultiple(["c", "c", "c", "c"]) → {"c": true}
-	 *
-	 */
-		public Map<String, Boolean> wordMultiple(String[] words) {
-			// Create a map to store word multiples (true if a word appears 2 or more times)
-			Map<String, Boolean> wordMultiples = new HashMap<>();
+		/*
+		 * Given an array of Strings, return a Map<String, Boolean> where each different String is a key and value
+		 * is true only if that String appears 2 or more times in the array.
+		 *
+		 * wordMultiple(["a", "b", "a", "c", "b"]) → {"b": true, "c": false, "a": true}
+		 * wordMultiple(["c", "b", "a"]) → {"b": false, "c": false, "a": false}
+		 * wordMultiple(["c", "c", "c", "c"]) → {"c": true}
+		 *
+		 */
 
-			// Iterate through the array of words
-			for (String word : words) {
-				// Check if the word exists in the map and has appeared before
-				if (wordMultiples.containsKey(word)) {
-					// If yes, set it to true
-					wordMultiples.put(word, true);
-				} else {
-					// If not, add it to the map with false
-					wordMultiples.put(word, false);
-				}
-			}
-
-			return wordMultiples;
-		}
+	}
 
 	/*
 	 * Given two Maps, Map<String, Integer>, merge the two into a new Map, Map<String, Integer> where keys in Map2,
