@@ -1,7 +1,6 @@
 package com.techelevator;
 
 public class SavingsAccount extends BankAccount {
-
     public static final int LOW_BALANCE = 150;
     public static final int SERVICE_CHARGE = 2;
 
@@ -15,12 +14,8 @@ public class SavingsAccount extends BankAccount {
 
     @Override
     public int withdraw(int amountToWithdraw) {
-        // Only perform transaction if there's still room for service charge
         if (amountToWithdraw > 0 && (getBalance() - amountToWithdraw >= SERVICE_CHARGE)) {
-            // Withdraw the amount
             super.withdraw(amountToWithdraw);
-
-            // Assess service charge if balance goes below low balance threshold
             if (getBalance() < LOW_BALANCE) {
                 super.withdraw(SERVICE_CHARGE);
             }

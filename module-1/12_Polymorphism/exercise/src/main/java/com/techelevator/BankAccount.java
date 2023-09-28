@@ -1,7 +1,11 @@
 package com.techelevator;
 
-public class BankAccount {
+import java.util.ArrayList;
+import java.util.List;
 
+
+
+public class BankAccount implements Accountable {
     private String accountHolderName;
     private String accountNumber;
     private int balance;
@@ -44,4 +48,14 @@ public class BankAccount {
         return balance;
     }
 
+    public int transferFunds(BankAccount destinationAccount, int transferAmount) {
+        if (transferAmount <= 0 || this.balance < transferAmount) {
+            return this.balance;
+        }
+
+        this.balance -= transferAmount;
+        destinationAccount.deposit(transferAmount);
+        return this.balance;
+    }
 }
+
