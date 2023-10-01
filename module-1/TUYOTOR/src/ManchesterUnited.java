@@ -15,4 +15,6 @@ public class ManchesterUnited {
         this.rating = rating;
         this.goodEnough = goodEnough;
     }
+
+
 }
