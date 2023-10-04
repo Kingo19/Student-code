@@ -1,0 +1,6 @@
+C,mr,burns,1001
+P,bart,simpson,1002,15
+P,maggie,simpson,1003,9
+P,marge,simpson,1004,17
+P,homer,simpson,1008,23
+C,ned,flanders,1020
