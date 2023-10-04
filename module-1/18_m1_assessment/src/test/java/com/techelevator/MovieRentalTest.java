@@ -16,7 +16,7 @@ public class MovieRentalTest {
             MovieRental movie1 = new MovieRental("Movie1", "DVD", false);
             MovieRental movie2 = new MovieRental("Movie2", "BluRay", true);
             MovieRental movie3 = new MovieRental("Movie3", "VHS", false);
-            
+
         }
 
         @Test

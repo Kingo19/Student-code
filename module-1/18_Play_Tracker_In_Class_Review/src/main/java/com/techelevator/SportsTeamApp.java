@@ -10,6 +10,7 @@ public class SportsTeamApp {
     private final int DELETE_PLAYER = 3;
     private final int EXIT = 4;
     private final int BATTING_AVERAGE = 5;
+    private final int FETCH_COACHES = 6;
 
 
     UserInterface ui = new UserInterface();
@@ -31,6 +32,11 @@ public class SportsTeamApp {
             if (choice == FETCH_PLAYERS) {
                 fetchPlayers();
             }
+            else if (choice == FETCH_COACHES) {
+                fetchCoaches();
+
+
+            }
             else if( choice == ADD_PLAYER) {
                 addPlayer();
 
@@ -45,6 +51,7 @@ public class SportsTeamApp {
             else if (choice == BATTING_AVERAGE) {
                 calculateBattingAverage();
             }
+
             else {
                 ui.printMessage("Invalid Option");
             }
@@ -54,6 +61,12 @@ public class SportsTeamApp {
 
 
 
+    }
+
+    private void fetchCoaches() {
+
+        List<Coach> coaches  = roster.retrieveListOfCoaches();
+        ui.printCoachesList(coaches);
     }
 
     private void calculateBattingAverage() {
@@ -82,15 +95,21 @@ public class SportsTeamApp {
 
     //TODO Do this later because I am a horrible procrastinator
     private void addPlayer() {
-        //go to the ui to get player info.
+        Player newPlayer = ui.askPlayerInfo();
         System.out.println("Not implemented yet");
+
         //send player obj to roster
+        roster.addPlayer(newPlayer);
     }
 
     private  void deletePlayer() {
+
+
         //go to the ui to get the emp id of the player we want to delete
+        int employeeID = ui.askPlayerToRemove();
 
         //call the roster to delete this player
+        roster.removePlayer(employeeID);
 
     }
 

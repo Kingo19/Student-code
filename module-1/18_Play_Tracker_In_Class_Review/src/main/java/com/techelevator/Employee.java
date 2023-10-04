@@ -36,4 +36,8 @@ public abstract class Employee {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
+    public int getEmployeeId() {
+        return employeeId;
+    }
 }

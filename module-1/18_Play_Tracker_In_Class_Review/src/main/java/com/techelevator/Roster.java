@@ -24,6 +24,7 @@ public class Roster {
     }
 
     public boolean removePlayer(int employeeId) {
+        writer.writeToFile(("Player to remove: " +  employeesMap.get(employeeId).toString()));
         employeesMap.remove(employeeId);
         return true;
     }
@@ -54,6 +55,22 @@ public class Roster {
 
 
         return playersList;
+    }
+
+    public List<Coach> retrieveListOfCoaches() {
+
+        List<Coach> coachesList = new ArrayList<>();
+
+
+        // OPTION 2 USING MAP.ENTRY
+        for(Map.Entry<Integer, Employee> row : employeesMap.entrySet()) {
+            if (row.getValue() instanceof Coach) {
+                coachesList.add((Coach)row.getValue());
+            }
+        }
+
+
+        return coachesList;
     }
 
 }
