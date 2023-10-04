@@ -10,5 +10,14 @@ public class MovieRental {
         this.title = title;
         this.format = format;
         this.isPremiumMovie = isPremiumMovie;
+
     }
+    @Override
+    public String toString() {
+        return "MOVIE: " + title + " - FORMAT:" + format + "PRICE: " + rentalPrice;
+
+    }
+
+
+
 }
