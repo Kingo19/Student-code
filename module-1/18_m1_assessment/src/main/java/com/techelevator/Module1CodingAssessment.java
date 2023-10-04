@@ -1,4 +1,5 @@
 package com.techelevator;
+import java.util.*;
 
 public class Module1CodingAssessment {
 
@@ -9,6 +10,12 @@ public class Module1CodingAssessment {
 
 		Module1CodingAssessment mca = new Module1CodingAssessment();
 		mca.run();
+	}
+
+	private static void printMovieList(List<MovieRental> movieList) {
+		for (MovieRental movie : movieList) {
+			System.out.println(movie.toString());
+		}
 	}
 
 	private void run() {
