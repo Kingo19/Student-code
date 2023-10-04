@@ -18,6 +18,7 @@ public class SportsTeamApp {
     public static void main(String[] args) {
          SportsTeamApp app = new SportsTeamApp();
          app.run();
+
     }
 
     public void run() {
