@@ -1,19 +1,29 @@
 package com.techelevator;
 
+import java.util.Scanner;
+
 public class Fibonacci {
 	public static void main(String[] args) {
-		int length_num = 10;
-		int first = 0;
-		int second = 1;
-		System.out.print(first + " " + second + " ");
+		System.out.println("Enter a number:");
+		Scanner scanner = new Scanner(System.in);
+		int fibonacci = scanner.nextInt();
 
-		for (int i = 2; i < length_num; i++) {
-			int fibonacci = first + second;
-			System.out.print(fibonacci + " ");
+		int x = 0;
+		int y = 1;
 
+		if (fibonacci >= 1) {
+			System.out.println(x+" ");
+		}
 
-			first = second;
-			second = fibonacci;
+		if (fibonacci >= 2) {
+			System.out.println(y);
+		}
+
+		for (int i = 3; i <= fibonacci; i++) {
+			int sum = x + y;
+			System.out.println(sum);
+			x = y;
+			y = sum;
 		}
 	}
 }

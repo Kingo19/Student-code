@@ -1,24 +1,15 @@
 package com.techelevator;
 
+import java.util.Scanner;
+
 public class TempConvert {
 	public static void main(String[] args) {
-
-		double fahrenheit = 80.0;
-		double celsius = convertFahrenheitToCelsius(fahrenheit);
-
-		System.out.println(fahrenheit + " degrees Fahrenheit is equal to " + celsius + " degrees Celsius.");
-
-
-
-	}
+		Scanner convFarToCeli = new Scanner(System.in);
+		System.out.println("Enter the temperature in fahrenheit.");
+		double fahrenheit = convFarToCeli.nextDouble();
+		double celsius = (fahrenheit - 32) * 5/9;
+		System.out.println(celsius + " Degree celsius");
 
 
-	public static double convertFahrenheitToCelsius(double fahrenheit) {
-		return (fahrenheit - 32) * 5 / 9;
-	}
-
-
-	public static double convertCelsiusToFahrenheit(double celsius) {
-		return celsius * 9 / 5 + 32;
 	}
 }
