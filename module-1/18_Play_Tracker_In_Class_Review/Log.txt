@@ -10,3 +10,6 @@
 10/04/2023 12:26:40 Loaded Player Data From File
 10/04/2023 12:27:02 Player added: 19 Nigus Solomon
 10/04/2023 12:27:24 Player to remove: 9 maggie simpson
+10/05/2023 16:03:18 Loaded Player Data From File
+10/05/2023 16:03:57 Loaded Player Data From File
+10/05/2023 16:04:15 Player added: 88 Nigus GM
