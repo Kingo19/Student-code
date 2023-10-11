@@ -78,11 +78,6 @@
 
 -- SUBQUERIES (optional)
 
--- Include state name rather than the state abbreviation while counting the number of cities in each state,
-
-
--- Include the names of the smallest and largest parks
-
 
 -- List the capital cities for the states in the Northeast census region.
 
