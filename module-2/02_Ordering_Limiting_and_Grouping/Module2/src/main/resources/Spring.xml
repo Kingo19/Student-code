@@ -3,12 +3,39 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Define a simple bean -->
-    <bean id="car" class="org.example.Car">
-    <property name="make" value="Toyota"/>
-        <property name="model" value="Camry"/>
-    </bean>
-    <bean id="engine" class="org.example.Engine"/>
+<!--    <bean id="car" class="org.example.Car">-->
+<!--        <constructor-arg name="brand" value="Toyota"> </constructor-arg>-->
+<!--        <constructor-arg name="name" value="Mazda"> </constructor-arg>-->
+<!--        <constructor-arg name="model" value="Camry"> </constructor-arg>-->
+<!--    </bean>-->
+<!--&lt;!&ndash;    <bean id="engine" class="org.example.Engine"/>&ndash;&gt;-->
+<!--    <bean id="truck" class="org.example.Truck">-->
+<!--       <constructor-arg name="brand" value="Fiat"> </constructor-arg>-->
+<!--        <constructor-arg name="name" value="PPI"> </constructor-arg>-->
+<!--        <constructor-arg name="model" value="Bloaster"> </constructor-arg>-->
+<!--    </bean>-->
 
 <!--    &lt;!&ndash; Define a bean with a dependency &ndash;&gt;-->
 <!--    <bean id="anotherBean" class="com.example.AnotherBean">-->

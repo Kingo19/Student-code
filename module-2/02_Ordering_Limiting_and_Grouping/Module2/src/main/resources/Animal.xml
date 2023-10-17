@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd">
+<!--    <bean id= "animal" class="Example1.Animal">-->
+<!--        <constructor-arg name="name" value="Goat"> </constructor-arg>-->
+<!--        <constructor-arg name="numberOfLegs" value="4"> </constructor-arg>-->
+<!--        <constructor-arg name="areCarniverous" value="false"> </constructor-arg>-->
+<!--    </bean>-->
+    <bean id= "cat" class="Example1.Cat">
+        <constructor-arg name="name" value="Wuro"> </constructor-arg>
+        <constructor-arg name="numberOfLegs" value="4"> </constructor-arg>
+        <constructor-arg name="areCarniverous" value="true"> </constructor-arg>
+    </bean>
+
+    <bean id= "dog" class="Example1.Dog">
+        <constructor-arg name="name" value="Buchi"> </constructor-arg>
+        <constructor-arg name="numberOfLegs" value="4"> </constructor-arg>
+        <constructor-arg name="areCarniverous" value="true"> </constructor-arg>
+    </bean>
+
+
+
+</beans>

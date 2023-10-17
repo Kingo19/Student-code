@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 
-public class Car implements Viachle {
+public class Truck implements Viachle {
     private String brand;
     private String name;
     private String model;
@@ -18,6 +18,6 @@ public class Car implements Viachle {
 
     @Override
     public void makeSound() {
-        System.out.println("Kinkinkinnnn");
+        System.out.println("Hrrrrrmmmmmm...");
     }
 }
