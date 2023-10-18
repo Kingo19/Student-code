@@ -20,12 +20,31 @@ public class JdbcParkDao implements ParkDao {
 
     @Override
     public int getParkCount() {
+        int parkCount = 0;
+
+        String sql = "SELECT COUNT(*) AS park_count FROM park";
+//        sqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//
+//        if (results.next()) {
+//            return results.getInt()
+//        }
         return 0;
     }
     
     @Override
     public LocalDate getOldestParkDate() {
-        return null;
+
+        LocalDate dateEstablished = null;
+
+//        // write the sql
+//        String sql = "SELECT MIN(date_established) AS date_established FROM park";
+//        sqlRowSet result = jdbcTemplate.queryForRowSet(sql);
+//
+//        if (result.next()) {
+//            dateEstablished = result.getDate("dateEstablished").toLocateDate;
+//        }
+
+        return dateEstablished;
     }
     
     @Override
@@ -35,6 +54,17 @@ public class JdbcParkDao implements ParkDao {
     
     @Override
     public List<String> getParkNames() {
+
+        List<String> parkNames = new ArrayList<>();
+        String sql = "SELECT park_name FROM park ORDER BY park_name ASC";
+
+//        sqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+//
+////        since we can return more than one record, use a while loop.
+//        while (results.next()) {
+//            String parkName = results.getStrings("park_name");
+//            String parkNames = results.getString("park_name");
+//        }
         return new ArrayList<>();
     }
     
