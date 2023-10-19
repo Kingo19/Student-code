@@ -18,9 +18,10 @@ public class BookStoreApp {
         dataSource.setPassword("postgres1");
 
         org.example.JdbcAuthorDao authorDao = new JdbcAuthorDao(dataSource);
-//        org.example.JdbcBookDao bookDao = new JdbcBookDao(dataSource);
-//
+        org.example.JdbcBookDao bookDao = new JdbcBookDao(dataSource);
+
         authorDao.getAuthors();
+        bookDao.getBooks();
     }
 
 }
