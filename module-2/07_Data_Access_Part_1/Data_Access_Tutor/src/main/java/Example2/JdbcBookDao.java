@@ -1,5 +1,8 @@
 package Example2;
 
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.CannotGetJdbcConnectionException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
 
@@ -14,36 +17,34 @@ public class JdbcBookDao {
     private final JdbcTemplate jdbcTemplate;
 
     public JdbcBookDao(DataSource dataSource) {
-        jdbcTemplate  = new JdbcTemplate(dataSource);
-
+        jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    public Book mapToBook(SqlRowSet results) {
+    private Book mapRowToBook(SqlRowSet results) {
         Book book = new Book();
         book.setBookId(results.getInt("book_id"));
-        book.setAuthorId(results.getInt("author_id"));
         book.setTitle(results.getString("title"));
+        book.setAuthorId(results.getInt("author_id"));
         book.setPrice(results.getBigDecimal("price"));
-        book.setPublishDate(results.getDate("publish_date").toLocalDate());
-        book.setOutOfPrint(results.getBoolean("out_of_print"));
-
-        return book;
-    }
-
-    private List <Book> getBooks() {
-        List<Book> book = new ArrayList<>();
-        String sql = "SELECT book_id, author_id, title, price, " +
-                "publish_date, out_of_print FROM book;";
-        SqlRowSet result = jdbcTemplate.queryForRowSet(sql);
-
-        while (result.next()) {
-            Book book23 = mapToBook(result);
-            book.add(book23);
-
+        if (results.getDate("publish_date") != null) {
+            book.setPublishDate(results.getDate("publish_date").toLocalDate());
         }
+        book.setOutOfPrint(results.getBoolean("out_of_print"));
         return book;
     }
 
+    public List<Book> getBooks() {
+        List<Book> books = new ArrayList<>();
 
+        String sql = "SELECT book_id, author_id, title, price, publish_date, out_of_print FROM book;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql);
+
+        while (results.next()) {
+            Book book = mapRowToBook(results);
+            books.add(book);
+        }
+
+        return books;
+    }
 
 }
