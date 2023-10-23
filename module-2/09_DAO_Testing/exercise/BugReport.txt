@@ -1,43 +1,34 @@
 Bug 1
 -----
-Test that demonstrates problem:
+ getTimesheetById_with_invalid_id_returns_null_timesheet
 
-Expected output:
+Expected output:1
 
-Actual output:
+Actual output:0
 
-How did you fix this bug?
+How did you fix this bug? By implementing the logic in the getTimesheetById.
 
 
 Bug 2
 -----
-Test that demonstrates problem:
+getTimesheetsByEmployeeId_with_valid_employee_id_returns_list_of_timesheets_for_employee()
 
-Expected output:
+Expected output:2
 
-Actual output:
+Actual output:1
 
-How did you fix this bug?
+How did you fix this bug? How did you fix this bug? By implementing the logic in the getTimesheetsByEmployeeId again with the correct sql query.
 
 
 Bug 3
 -----
-Test that demonstrates problem:
+getTimesheetsByProjectId_with_valid_id_returns_list_of_all_timesheets_for_projet
 
-Expected output:
+Expected output:1
 
-Actual output:
+Actual output:0
 
-How did you fix this bug?
+How did you fix this bug?By implementing the logic in the getTimesheetsByEmployeeId again with the correct sql query and using correct logic.
 
 
-Bug 4
------
-Test that demonstrates problem:
-
-Expected output:
-
-Actual output:
-
-How did you fix this bug?
 

@@ -1,6 +1,7 @@
 package com.techelevator;
 
 import com.techelevator.domain.Player;
+import org.springframework.jdbc.support.rowset.SqlRowSet;
 
 import java.util.List;
 
@@ -111,6 +112,8 @@ public class SportsTeamApp {
 
     }
 
-
+    private Player mapToPlayer(SqlRowSet result) {
+        Player players = new Player();
+    }
 
 }
