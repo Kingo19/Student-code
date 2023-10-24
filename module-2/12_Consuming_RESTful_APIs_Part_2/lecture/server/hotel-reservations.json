@@ -137,6 +137,25 @@
       "checkinDate": "2024-04-15",
       "checkoutDate": "2024-04-21",
       "guests": 4
+    },
+    {
+      "hotelId": 1,
+      "fullName": "Ian King",
+      "checkinDate": "2023-11-06",
+      "checkoutDate": "2024-11-08",
+      "guests": 2,
+      "id": 707
+    },
+    {
+      "id": 708
+    },
+    {
+      "hotelId": 2,
+      "fullName": "Yotor King",
+      "checkinDate": "2023-11-06",
+      "checkoutDate": "2023-11-08",
+      "guests": 3,
+      "id": 709
     }
   ]
 }
