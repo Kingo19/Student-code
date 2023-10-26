@@ -5,6 +5,7 @@ import com.techelevator.util.BasicLogger;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientResponseException;
 import org.springframework.web.client.RestTemplate;
@@ -15,18 +16,45 @@ public class LocationService {
     private final RestTemplate restTemplate = new RestTemplate();
 
     public Location add(Location newLocation) {
-        //Step Three: Add a location with POST
-        return null;
+
+
+        try {
+            ResponseEntity<Location> entity = restTemplate.postForEntity(API_BASE_URL, newLocation, Location.class);
+            return entity.getBody();
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode());
+            return null;
+        }
+
     }
 
     public boolean update(Location updatedLocation) {
         //Step Four: Modify a location with PUT
-        return false;
+        String url = API_BASE_URL + "/" + updatedLocation.getId();
+
+
+        try {
+            restTemplate.put(url, updatedLocation);
+            return true;
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode());
+            return false;
+        }
+
     }
 
     public boolean delete(int id) {
         //Step Five: Delete a location with DELETE
-        return false;
+        String url = API_BASE_URL + "/" + id;
+
+        try {
+            restTemplate.delete(url);
+            return true;
+        } catch (RestClientResponseException e) {
+            System.out.println(e.getRawStatusCode());
+            return false;
+        }
+
     }
 
     public Location[] getAll() {

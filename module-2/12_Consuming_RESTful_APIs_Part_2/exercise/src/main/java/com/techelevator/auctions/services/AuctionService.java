@@ -10,6 +10,8 @@ import org.springframework.web.client.RestTemplate;
 
 import com.techelevator.auctions.model.Auction;
 
+import javax.naming.AuthenticationException;
+
 public class AuctionService {
 
     public static String API_BASE_URL = "http://localhost:3000/auctions";
@@ -17,18 +19,60 @@ public class AuctionService {
 
 
     public Auction add(Auction newAuction) {
-        // place code here
-        return null;
+      HttpHeaders headers = new HttpHeaders();
+      headers.setContentType(MediaType.APPLICATION_JSON);
+
+       HttpEntity <Auction> entity = new HttpEntity<>(newAuction, headers);
+       Auction auction = null;
+
+        try {
+            auction = restTemplate.postForObject(API_BASE_URL , entity, Auction.class);
+        } catch (RestClientResponseException e) {
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            BasicLogger.log(e.getMessage());
+        }
+        return auction;
     }
 
     public boolean update(Auction updatedAuction) {
-        // place code here
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity <Auction> entity = new HttpEntity<>(updatedAuction, headers);
+
+
+        try {
+            restTemplate.put(API_BASE_URL + "/" + updatedAuction.getId(), entity);
+            return true;
+        } catch (RestClientResponseException e) {
+            // handles exceptions thrown by rest template and contains status codes
+            BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+        } catch (ResourceAccessException e) {
+            // i/o error, ex: the server isn't running
+            BasicLogger.log(e.getMessage());
+        }
+
         return false;
+
     }
 
     public boolean delete(int auctionId) {
-        // place code here
-        return false;
+
+            try {
+                restTemplate.delete(API_BASE_URL + "/" + auctionId);
+                return true;
+            } catch (RestClientResponseException e) {
+                // handles exceptions thrown by rest template and contains status codes
+                BasicLogger.log(e.getRawStatusCode() + " : " + e.getStatusText());
+            } catch (ResourceAccessException e) {
+                // i/o error, ex: the server isn't running
+                BasicLogger.log(e.getMessage());
+            }
+
+            return false;
+
+
     }
 
     public Auction[] getAllAuctions() {
