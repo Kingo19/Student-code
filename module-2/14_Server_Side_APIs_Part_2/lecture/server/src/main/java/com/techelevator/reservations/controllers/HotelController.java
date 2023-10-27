@@ -15,7 +15,7 @@ public class HotelController {
 
     private HotelDao hotelDao;
     private ReservationDao reservationDao;
-
+// Constractor injection (via @component)
     public HotelController(HotelDao hotelDao, ReservationDao reservationDao) {
         this.hotelDao = hotelDao;
         this.reservationDao = reservationDao;

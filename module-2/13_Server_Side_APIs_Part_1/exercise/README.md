@@ -1,101 +1,91 @@
-# Consuming APIs: POST, PUT, and DELETE (Java)
+# Server-Side APIs: Part 1 Exercise
 
-In this exercise, you'll work on a command-line application that displays online auction info. Most of the command-line application is provided. You'll add more code that calls the API.
+Previously, you created a command-line application that made requests to an API server. In this exercise, you'll re-create the API server in Java to handle `GET` and `POST` requests.
 
-Your task is to add web API calls using `RestTemplate` to create new auctions (`POST`), update existing auctions (`PUT`) and delete (`DELETE`) auctions.
+## Step One: Open project in IntelliJ and explore starting code
 
-## Step One: Start the server
+Open the server-side APIs part 1 exercise into IntelliJ. After you've opened the project, review the starting code.
 
-Before starting, make sure the web API is up and running. Open the command line and navigate to the `./server/` folder in this exercise.
+### Models
 
-First, run the command `npm install` to install any dependencies. You won't need to do this on any subsequent run.
+In the `model` package, there's an `Auction.java` model that has the same properties as the `Auction` class you've been working with.
 
-To start the server, run the command `npm start`. If there aren't any errors, you'll see the following, which means that you've successfully set up your web API:
+### DAO
 
-```
-  \{^_^}/ hi!
+In the `dao` package, there's a `MemoryAuctionDao.java` class that provides data access code. To reduce complexity, a static `List` substitutes for a SQL database. Look at the interface `AuctionDao.java` for the methods you'll call from the controller.
 
-  Loading data-generation.js
-  Done
+### Controllers
 
-  Resources
-  http://localhost:3000/auctions
+In the `controller` package, there's an `AuctionController.java` class that you'll work in today.
 
-  Home
-  http://localhost:3000
+You'll create the methods for the API. The controller class already contains the necessary `@RestController` and `@RequestMapping` annotations. The value for `@RequestMapping` is `/auctions`, which is the base path for all the request mappings defined in this controller.
 
-  Type s + enter at any time to create a snapshot of the database
-```
+### Tests
 
-You can stop the server, or any other process that you've started from the console, by using the keyboard shortcut `Ctrl+C`.
+In `src/test/java/com/techelevator/auctions/controller`, you'll find the test class `AuctionControllerTest`, which has all of the tests for the methods you'll write today. After you complete each step, more tests pass.
 
-In this exercise, you'll modify data on the server. As you're working, you may come across a situation where you want to reset the data. To do this, first stop the server with `Ctrl+C`, then restart it with `npm start`.
+If you also want to run the server and test with Postman or the browser, feel free to do so. However, your goal is to make sure all the unit tests pass.
 
-## Step Two: Explore the API
+## Step Two: Implement the `list()` method
 
-Before moving on to the next step, explore the web API using Postman. You can access the following endpoints:
+This method's purpose is to return a list of all auctions.
 
-- GET: http://localhost:3000/auctions
-- GET: http://localhost:3000/auctions/{id} (use a number between 1 and 7 in place of {id})
+In `AuctionController.java`, create a method named `list()` that returns a `List<Auction>`. Then add the `@RequestMapping` annotation to have this method respond to `GET` requests for `/auctions`.
 
-These are the endpoints you'll work on for this exercise:
+Look in `AuctionDao.java` for a method that returns all auctions.
 
-- POST: http://localhost:3000/auctions
-- PUT: http://localhost:3000/auctions/{id}
-- DELETE: http://localhost:3000/auctions/{id}
+If completed properly, the `listShouldReturnStatusOK` and `listShouldReturnCorrectCount` tests pass.
 
-## Step Three: Evaluation criteria and functional requirements
+## Step Three: Implement the `get()` action
 
-* All unit tests pass in `AuctionServiceTest.java`.
-* Code is clean, concise, and readable.
+This method's purpose is to return a specific auction based on the value passed to it.
 
-To complete this exercise, you need to complete the `AuctionService` class by implementing the `add()`, `update()`, and `delete()` methods.
+In `AuctionController.java`, create a method named `get()` that accepts an `int` and returns an `Auction`.
 
-### Tips and tricks
+Add the `@RequestMapping` annotation to this method to respond to `GET` requests for `/auctions` with a number following it—for example, `/auctions/7`. You'll need to pass a value to the path to tell it to accept a dynamic parameter.
 
-* There is a helper method available that creates an `HttpEntity` with a content-type header set to JSON.
-* The `add()` method takes an `Auction` object as a parameter that's passed from the console. The `add()` method must return the `Auction` object that comes back from the API.
-* The `update()` method takes an `Auction` object as a parameter that's passed from the console. The `update()` method must return `true` if no errors occur when calling the API, and `false` otherwise.
-* The `delete()` method takes an integer as a parameter that's passed from the console. It's the ID of the auction to delete. The `delete()` method must return `true` if no errors occur when calling the API, and `false` otherwise.
-* When writing all three methods, consider that an error may occur when calling the API.
+Look in `AuctionDao.java` for a method that returns a specific auction based upon an `int` that's passed to the data access method.
 
-## Step Four: Add a new auction
+If completed properly, the `getShouldReturnSingleAuction` and `getInvalidIdShouldReturnNothing` tests pass.
 
-The `add()` method sends the `newAuction` parameter to the API. You can use the helper method mentioned earlier to make a new `HttpEntity`. Make sure to handle any exceptions that might be thrown:
+## Step Four: Implement the `create()` action
 
-```java
-public Auction add(Auction newAuction) {
-    // place code here
-    return null;
-}
-```
+This method's purpose is to add the auction that's passed to it.
 
-When you've completed the `add()` method, run the unit tests, and verify that the three tests that begin with `add_` all pass.
+In `AuctionController.java`, create a method named `create()` that accepts an `Auction` and returns an `Auction`.
 
-## Step Five: Update an existing auction
+Add the `@RequestMapping` annotation to have this method respond to `POST` requests for `/auctions`.
 
-The `update()` method sends the `updatedAuction` parameter to the API to replace the existing one. You can use the helper method mentioned earlier to make a new `HttpEntity`. Make sure to handle any exceptions that might be thrown:
+Look in `AuctionDao.java` for a method that creates an auction. The controller method passes the newly created auction back to the client.
 
-```java
-public boolean update(Auction updatedAuction) {
-    // place code here
-    return false;
-}
-```
+If completed properly, the `createShouldAddNewAuction` and `createShouldThrowExceptionWhenRequestBodyDoesntExist` tests pass.
 
-When you've completed the `update()` method, run the unit tests, and verify that the three tests that begin with `update_` all pass.
+## Step Five: Add searching by title
 
-## Step Six: Delete an auction
+The purpose of this step is to enable searching by title. You'll modify the `list()` method to accept an optional query string parameter that returns all auctions with the search term in the title. The URL to use this would look like `/auctions?title_like=` with a search term following it.
 
-The `delete()` method removes the auction from the system with the ID that matches the `auctionId` parameter. Make sure to handle any exceptions that might come up. What happens if you enter an ID for an auction that doesn't exist?
+In `AuctionController.java`, return to the `list()` action method. Add a `String` request parameter with the name `title_like`. You'll need to make this parameter optional, which means you set a default value for it in the parameter declaration. In this case, you want to set the default value to an empty string `""`.
 
-```java
-public boolean delete(int auctionId) {
-    // place code here
-    return false;
-}
-```
+Look in `AuctionDao.java` for a method that returns auctions that have titles containing a search term. Return that result in the controller method if `title_like` contains a value, otherwise return the full list like before.
 
-When you've completed the `delete()` method, run the unit tests, and verify that the three tests that begin with `delete_` all pass.
+If completed properly, the `searchByTitleShouldReturnList` and `searchByTitleExpectNone` tests pass.
 
-Once all unit tests pass, you've completed this exercise.
+## Step Six: Add searching by price
+
+The purpose of this step is to enable searching by price. You'll modify the `list()` method to accept an optional query string parameter that returns all auctions with the current bid less than or equal to the value passed to it. The URL to use this would look like `/auctions?currentBid_lte=` with a numeric value following it.
+
+In `AuctionController.java`, return to the `list()` action method. Add another optional parameter after `title_like`—this time a `double` with the name `currentBid_lte`. Set the default value to `0`. Using the declaration of `title_like` as a guide, figure out how to declare `currentBid_lte`.
+
+Look in `AuctionDao.java` for a method that returns auctions based on prices being less than or equal to a certain amount. Return that result in the controller method if `currentBid_lte` is greater than zero.
+
+If completed properly, the `searchByPriceShouldReturnList` and `searchByPriceExpectNone` tests pass.
+
+## Step Seven: Search by title and price
+
+You might be thinking, "Wait, what if the client searches with both parameters?" There's another method in `AuctionDao.java` that returns search results for both parameters. Add a call to this method if a request has both parameters. In the controller method, determine when to call the search methods and when to call the method that returns the full list.
+
+If completed properly, the `searchByTitleAndPriceExpectOne` and `searchByTitleAndPriceExpectNone` tests pass.
+
+---
+
+If you completed all of the steps correctly, all of your tests pass.
