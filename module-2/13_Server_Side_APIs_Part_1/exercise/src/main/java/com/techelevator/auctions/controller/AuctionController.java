@@ -17,22 +17,17 @@ public class AuctionController {
         this.auctionDao = new MemoryAuctionDao();
     }
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public List<Auction> auctionList(@RequestParam(required = false, name = "title_like") String title, @RequestParam(required = false, name = "currentBid_lte") double price) {
-//        if (title == null && price == 0) {
-//            return auctionDao.getAuctions();
-//        } else if (title == null && !(price == 0)) {
-//            return auctionDao.getAuctionsByMaxBid(price);
-//        } else if (title != null && price == 0) {
-//            return auctionDao.getAuctionsByTitle(title);
-//        } else
-//        return auctionDao.getAuctionsByTitleAndMaxBid(title, price);
-//
-//    }
-
     @RequestMapping(method = RequestMethod.GET)
-    public List<Auction> list() {
-        return auctionDao.getAuctions();
+    public List<Auction> auctionList(@RequestParam(required = false, name = "title_like") String title, @RequestParam(required = false, name = "currentBid_lte") Double price) {
+        if ((title == null) && (price == null)) {
+            return auctionDao.getAuctions();
+        }  if ((title == null) && (price != null)) {
+            return auctionDao.getAuctionsByMaxBid(price);
+        }  if ((title != null) && (price == null)) {
+            return auctionDao.getAuctionsByTitle(title);
+        }
+        return auctionDao.getAuctionsByTitleAndMaxBid(title, price);
+
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
