@@ -8,12 +8,14 @@ import com.techelevator.reservations.exception.DaoException;
 import com.techelevator.reservations.model.Hotel;
 import com.techelevator.reservations.model.Reservation;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
-
+@PreAuthorize("isAuthenticated()")
 @RestController
 public class HotelController {
 
@@ -34,6 +36,7 @@ public class HotelController {
      * @param city  the city to filter by
      * @return a list of hotels that match the city & state
      */
+   // @PreAuthorize("isAuthenticated()") // Spring Expression Language
     @RequestMapping(path = "/hotels", method = RequestMethod.GET)
     public List<Hotel> list(@RequestParam(required=false) String state, @RequestParam(required = false) String city) {
         return hotelDao.getHotelsByStateAndCity(state, city);
@@ -62,7 +65,8 @@ public class HotelController {
      * @return all reservations
      */
     @RequestMapping(path = "/reservations", method = RequestMethod.GET)
-    public List<Reservation> listReservations() {
+    public List<Reservation> listReservations(Principal principal) {
+        System.out.println(principal.getName() + "has request to retrieve a list of reservation");
         return reservationDao.getReservations();
     }
 
@@ -72,6 +76,7 @@ public class HotelController {
      * @param id
      * @return a single reservation
      */
+    @PreAuthorize("hasRole('ADMIN")
     @RequestMapping(path = "reservations/{id}", method = RequestMethod.GET)
     public Reservation getReservation(@PathVariable int id) {
         Reservation reservation = reservationDao.getReservationById(id);
