@@ -1,14 +1,16 @@
 package org.example.Model;
 
+import java.time.LocalDate;
+
 public class Book {
     private int bookId;
     private int authorId;
-    private int price;
+    private double price;
     private String title;
-    private String publishedDate;
+    private LocalDate publishedDate;
     private boolean outOfPrint;
 
-    public Book(int bookId, int authorId, int price, String title, String publishedDate, boolean outOfPrint) {
+    public Book(int bookId, int authorId, double price, String title, LocalDate publishedDate, boolean outOfPrint) {
         this.bookId = bookId;
         this.authorId = authorId;
         this.price = price;
@@ -37,11 +39,11 @@ public class Book {
         this.authorId = authorId;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -53,11 +55,11 @@ public class Book {
         this.title = title;
     }
 
-    public String getPublishedDate() {
+    public LocalDate getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(String publishedDate) {
+    public void setPublishedDate(LocalDate publishedDate) {
         this.publishedDate = publishedDate;
     }
 

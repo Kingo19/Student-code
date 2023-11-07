@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> User information </title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="info">
+    <form action="submit_url" id="format"> 
+        <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <br>
+            <label for="date-of-birth">Date of Birth:</label>
+            <input type="date" id="date-of-birth" name="date-of-birth">
+            <br>
+            <label for="favorite-color">Favorite Color:</label>
+            <input type="color" id="favorite-color" name="favorite-color">
+            <br>
+            <label for="lucky-number">Lucky Number:</label>
+            <input type="number" id="lucky-number" name="lucky-number">
+            <br>
+            <label for="confirmation">I confirm the data is correct:</label>
+            <input type="checkbox" id="confirmation" name="confirmation">
+
+    </form>
     
 </body>
 </html>

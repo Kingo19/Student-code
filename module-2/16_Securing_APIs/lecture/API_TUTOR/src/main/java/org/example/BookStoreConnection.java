@@ -4,6 +4,7 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.example.Dao.JdbcAuthorDao;
 import org.example.Dao.JdbcBookDao;
 import org.example.Model.Author;
+import org.example.Model.Book;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -55,8 +56,10 @@ public class BookStoreConnection {
 //       jdbcAuthorDao.updateAuthor(authorTobeUpdated);
 //       System.out.println("Updated Author: " + authorTobeUpdated.getFirstName() + " " + authorTobeUpdated.getLastName());
 
-       jdbcAuthorDao.deleteAuthor(14);
-       System.out.println("An author was successfully deleted");
+//       jdbcAuthorDao.deleteAuthor(14);
+//       System.out.println("An author was successfully deleted");
+
+
 
     }
 

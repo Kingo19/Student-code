@@ -1,0 +1,46 @@
+* {
+    background-color: hwb(0 3% 41%);
+}
+
+body { 
+
+    margin: 0;
+    padding: 0;
+    color: rgb(240, 232, 232);
+    
+}
+
+#header {
+    background-color: rgb(10, 12, 12);
+    padding: 22;
+}
+
+#image {
+    width: 100px;
+    height: 100px;
+    
+}
+
+#info {
+    background-color: rgb(17, 23, 119);
+}
+
+#format {
+    background-color:magenta
+}
+
+#facts-section {
+    background-color: rgb(56, 48, 36);
+}
+
+h2 {
+    text-decoration: underline;
+}
+
+h1 {
+    text-align: center;
+}
+
+blockquote {
+    font-style: italic;
+}
