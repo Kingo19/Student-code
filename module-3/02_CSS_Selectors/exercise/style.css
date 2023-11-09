@@ -15,3 +15,93 @@ ul {
   margin: 0;
   padding: 0;
 }
+
+
+/* Step One: Style the `aside` element */
+aside {
+  position: fixed;
+  border-right: 1px solid rgba(0, 173, 238, 0.4);
+  height: 100%; /* Added for the blue border to extend to the bottom of the viewport */
+  width: 200px;
+}
+
+aside img {
+  width: 120px;
+  display: block;
+  margin: 0 auto;
+}
+
+main {
+  margin-left: 200px;
+  margin-right: 200px; /* Added to clear both left and right sides */
+  padding: 0 20px;
+}
+
+/* Step Two: Style the `nav` element */
+nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+nav li {
+  text-align: center;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(0, 173, 238, 0.4);
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+
+nav li:first-child {
+  border-top: 1px solid rgba(0, 173, 238, 0.4);
+}
+
+nav a {
+  font-weight: bold;
+  color: #00ADEE;
+  text-decoration: none;
+  display: block;
+}
+
+nav a:not(:first-child) {
+  text-decoration: none; /* Remove underlines except for the first one */
+}
+
+/* Step Three: Style the `main` element */
+header img {
+  height: 100px;
+  margin-bottom: 20px;
+}
+
+main img.banner {
+  max-width: 100%;
+}
+
+/* Step Four: Style `section` */
+section div {
+  width: 33%;
+  display: inline-block;
+  vertical-align: top;
+  padding: 20px;
+}
+
+section h2 {
+  color: #8CC36F;
+}
+
+section h2 i {
+  margin-right: 10px;
+}
+
+section div + div {
+  border-left: 1px solid #8CC36F; /* Change to green color code for the borders */
+}
+
+section div, main img.banner, aside {
+  margin: 10px;
+}
+
+
+
+
+
