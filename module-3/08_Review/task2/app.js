@@ -52,3 +52,17 @@ const homes =  [
 
 
 //write your code below
+
+function basic_zip_filter(zipCode) {
+  return homes.filter((home) => {
+    return home.address.zip == zipCode;
+  });
+}
+
+ function basic_forEach(array) {
+  array.forEach(element => {
+    console.log('MLS Id: ' + element.mlsId + ', Zip code: ' + element)
+  })
+ }
+
+ basic_forEach(basic_zip_filter(43023));
