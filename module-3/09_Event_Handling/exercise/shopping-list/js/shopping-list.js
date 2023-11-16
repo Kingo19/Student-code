@@ -1,3 +1,4 @@
+
 let allItemsIncomplete = true;
 const pageTitle = 'My Shopping List';
 const groceries = [
@@ -35,4 +36,56 @@ function displayGroceries() {
     li.appendChild(checkCircle);
     ul.appendChild(li);
   });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setPageTitle();
+  displayGroceries();
+
+  const toggleAllButton = document.getElementById('toggleAll');
+  toggleAllButton.addEventListener('click', toggleAll);
+
+  const groceryItems = document.querySelectorAll('ul li');
+  groceryItems.forEach(item => {
+    item.addEventListener('click', markItemComplete);
+    item.addEventListener('dblclick', markItemIncomplete);
+  });
+});
+
+function markItemComplete(event) {
+  const listItem = event.currentTarget;
+  if (!listItem.classList.contains('completed')) {
+    listItem.classList.add('completed');
+    const icon = listItem.querySelector('i');
+    icon.classList.add('completed');
+  }
+}
+
+function markItemIncomplete(event) {
+  const listItem = event.currentTarget;
+  if (listItem.classList.contains('completed')) {
+    listItem.classList.remove('completed');
+    const icon = listItem.querySelector('i');
+    icon.classList.remove('completed');
+  }
+}
+
+function toggleAll() {
+  const groceryItems = document.querySelectorAll('ul li');
+  groceryItems.forEach(item => {
+    if (allItemsIncomplete) {
+      item.classList.add('completed');
+      const icon = item.querySelector('i');
+      icon.classList.add('completed');
+    } else {
+      item.classList.remove('completed');
+      const icon = item.querySelector('i');
+      icon.classList.remove('completed');
+    }
+  });
+
+  allItemsIncomplete = !allItemsIncomplete;
+
+  const toggleAllButton = document.getElementById('toggleAll');
+  toggleAllButton.innerText = allItemsIncomplete ? 'Mark All Complete' : 'Mark All Incomplete';
 }
