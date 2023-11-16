@@ -51,5 +51,13 @@ const homes =  [
     ];
 
 
-//write your code below
+//write your code below 
 
+function basic_forEach(homes) {
+  homes.forEach(function(home) {
+    console.log("MLS Id:", home.mlsId);
+    console.log("Zip code:", home.zipCode);
+    console.log("Price:", home.price);
+    console.log("---------------------");
+  });
+}
