@@ -24,10 +24,10 @@
 
 <script>
 export default {
-  props: ['review'],
+  props: ['review'],  //The review object is being passed in by its parent
   methods: {
     onFavoritedChange() {
-
+       //TODO - Call the Vuex store to change (or flip) the favorited property of the review
     }
   }
 };

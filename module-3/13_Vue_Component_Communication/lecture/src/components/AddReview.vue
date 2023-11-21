@@ -47,6 +47,7 @@ export default {
   },
   methods: {
     addNewReview() {
+      //TODO: We need to update the new review in the Vuex store
       this.resetForm();
     },
     resetForm() {

@@ -17,8 +17,8 @@ export default {
   },
   computed: {
     filteredReviews() {
-      const reviewsFilter = -1;
-      const reviews = [];
+      const reviewsFilter = -1;  //TODO: Get the filter from Vuex store
+      const reviews = [];     //TODO: Get the reviews from the Vuewx store
       return reviews.filter(review => {
         return reviewsFilter === 0 || reviewsFilter === review.rating;
       });

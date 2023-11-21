@@ -7,14 +7,17 @@
 
 <script>
 export default {
-  props: ['rating'],
+  props: ['rating'],  //The rating will come from the parent(App.vue)
   methods: {
     updateFilter() {
+      //TODO - We need to update the filter 
+      // in the Vuex store (eg. use a mutation)
 
     }
   },
   computed: {
     numberOfReviews() {
+       //TODO: Get the reviews from the Vuex store
       const reviews = [];
       const matchingReviews = reviews.filter((review) => {
         return review.rating === this.rating;

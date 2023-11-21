@@ -9,11 +9,14 @@
 export default {
   methods: {
     updateFilter() {
+      //TODO - We need to update the filter 
+      // in the Vuex store (eg. use a mutation)
 
     }
   },
   computed: {
     averageRating() {
+      //TODO: Get the reviews from the Vuex store
       const reviews = [];
       
       if (reviews.length === 0) {
