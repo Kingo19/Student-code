@@ -197,7 +197,7 @@ export default {
         emailAddress: "",
         status: "Active",
       };
-     // this.isNewUserFormVisible = false;
+     this.isNewUserFormVisible = false;
     },
     activateSelectedUsers() {
       this.selectedUserIds.forEach((userId) => {
