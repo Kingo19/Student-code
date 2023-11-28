@@ -46,7 +46,7 @@
   }
   
   .title-input, .author-input, .isbn-input {
-    margin-bottom: 10px;
+    margin-bottom: 10.1px;
   }
   </style>
   
