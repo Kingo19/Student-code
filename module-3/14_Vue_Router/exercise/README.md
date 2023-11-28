@@ -1,67 +1,96 @@
-# Vue Router Exercise
+# Component Communication Exercise
 
-In this exercise, you'll take components from the previous exercise and turn them into a full, single page application using the Vue Router. You may need to make some small changes to some of the existing components, but most of the work is done by creating views and setting their routes.
+In this exercise, you'll take an existing component and turn it into a group of components that communicate through a Vuex datastore. Throughout this exercise, you'll move data into a Vuex datastore, set up mutations, and create new components to interact with the data.
 
-Take a moment to review the store's `index.js` file. Each book now contains two additional pieces of information: the number of pages and a link to more info. `NewBookForm.vue` prompts for the additional info. The usage of the new data is described below. 
-
-## Step One: Show a home page with best sellers and new releases
-
-Implement a `HomeView` view that displays the `BestSellerList` and `NewReleasesList` components. Make this view appear when the path is `/`.
-
-After you complete this step, all tests under "Step One Tests" pass.
-
-![Best Seller and New Releases Page at /](./img/best-seller-and-new-releases-page.png)
+Before you begin the exercise, run `npm install` to install any dependencies. You can run the end-to-end tests with `npm run test:e2e` or `npm run test:e2e-headless`.
 
 >**NOTE:** If you work with the page in the browser, refreshing the page causes it to lose any values you entered, boxes you've checked, or any other action you performed since the page doesn't persist changes.
 
-## Step Two: Display the reading list
+After you complete the exercise steps, the final application looks similar to this:
 
-Implement a `MyBooksView` view that displays the `ReadingList` component. Make this view appear when the path is `/myBooks`.
+![Reading List Complete](./img/reading-list-complete.png)
 
-After you complete this step, all tests under "Step Two Tests" pass.
+## Step One: Show reading list
 
-![Reading List at /](./img/vue-router-exercise-step-two.png)
+First, take the following state and put it into the Vuex datastore located in `src/store/index.js`:
 
-## Step Three: Implement navigation in the App component
+```js
+books: [
+  {
+    title: "Kafka on the Shore",
+    author: "Haruki Murakami",
+    read: false,
+    isbn: "9781784877989"
+  },
+  {
+    title: "The Girl With All the Gifts",
+    author: "M.R. Carey",
+    read: true,
+    isbn: "9780356500157"
+  },
+  {
+    title: "The Old Man and the Sea",
+    author: "Ernest Hemingway",
+    read: true,
+    isbn: "9780684830490"
+  },
+  {
+    title: "Le Petit Prince",
+    author: "Antoine de Saint-Exupéry",
+    read: false,
+    isbn: "9783125971400"
+  }
+]
+```
 
-Implement navigation in a `<nav>` element at the top of the `App` component. There must be a link to the `HomeView` view and a link to the `MyBooksView` view.
+Implement the `ReadingList` component to take that data and create a `BookCard` component for each book. At this stage, you only need to create a `BookCard` component per book—it'll only show an empty box for each book until you fill in the details in the next step.
 
-After you complete this step, all tests under "Step Three Tests" pass.
+After you complete step one, run the end-to-end tests.
 
-![Top Navigation in App](./img/top-navigation.png)
+All tests under "Step One Tests" now pass.
 
-## Step Four: Display the book form
+## Step Two: Display book details
 
-Implement a `NewBookView` view that displays the `NewBookForm` component at the path `/addBook`.
+Set up the `BookCard` component to have a prop that takes a book and shows the details of that book in its UI: title, author, and cover image.
 
-After you complete this step, all tests under "Step Four Tests" pass.
+Use the following HTML elements and CSS classes for the book details:
 
-![New Book Page at /addBook](./img/new-book-page.png)
+| Book detail | HTML element | CSS class     |
+|-------------|--------------|---------------|
+| Title       | `h2`         | `book-title`  |
+| Author      | `h3`         | `book-author` |
+| Cover image | `img`        | `book-image`  |
 
-## Step Five: Integrate the new book form into application
+For the book's cover image, use the following for the `v-bind:src`:
 
-Add a link to the bottom of the `MyBooksView` view that links to the `NewBookView` view. Also, change the submission logic of the `NewBookForm` component so that it goes back to the `MyBooksView` view when a book is successfully added to the list.
+```js
+v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'"
+```
 
-> Hint: You need to change the `NewBookForm` component to do that navigation using the `this.$router` object.
+Once you complete this step, all the tests under "Step Two Tests" pass.
 
-![Link to the new book form](./img/new-book-link.png)
+## Step Three: Add a read/unread toggle button
 
-After you complete this step, all tests under "Step Five Tests" pass.
+Add a new control to the `BookCard` that's a button to toggle the read and unread status of a book. The button must indicate what clicking the button sets the status to. All books with a read status must have the `read` class added to the card.
 
-## Step Six: Create a book detail view
+Remember that the read status must be set through a mutation, not set directly from the `BookCard` component.
 
-Create a new component called `BookDetails` that shows all of a book's details on the screen. A basic version would be something like this:
+The button that sets the status to read must have a `mark-read` class, and the button that sets the status to unread must have a `mark-unread` class.
 
-![Book Detail Page](./img/book-detail-page.png)
+Once you complete this step, all tests under "Step Three Tests" pass.
 
-The <u>More Information</u> link opens the book's `moreInfoLink` in a new browser tab. (Hint: Refer to the `target` attribute of the [anchor tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) for how to do this.)
+## Step Four: Add a `NewBookForm` component
 
-Create a view and a dynamic route with the path `/book/` plus the `isbn` number on the end—for example, `/book/9781400079278`. Use that number to look up the book for the `BookDetails` component.
+Create a new component that has a form for a user to add a new book to the list. The elements must have the following classes:
 
-Finally, link the `BookCard` components in the `ReadingList` component to this new route, making sure to have the book's `isbn` as part of the link when the `BookCard` is clicked.
+| Element            | CSS class       |
+|--------------------|-----------------|
+| Form               | `new-book-form` |
+| Title Input Field  | `title-input`   |
+| Author Input Field | `author-input`  |
+| ISBN Input Field   | `isbn-input`    |
 
-> Hint: Look at the `ReadingList` component to determine the source of the data you'll use in the `BookDetails` component. Consider what array methods you know that return an element or elements with a specific value. `BookDetails` must receive a single `book` object.
 
-![Reading List with individual book links](./img/vue-router-exercise-completed.png)
+Lastly, add the component to the page in the `App` component.
 
-After you complete this step, all tests now pass.
+Now, all tests pass.

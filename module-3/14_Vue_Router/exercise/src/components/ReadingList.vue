@@ -1,15 +1,26 @@
+
+
 <template>
   <div class="book-container">
-    <book-card v-bind:book="book" v-for="book in $store.state.books" v-bind:key="book.isbn" />
+    <BookCard v-for="book in books" :key="book.isbn" :book="book" />
+    <NewBookForm />
   </div>
 </template>
 
 <script>
-import BookCard from '../components/BookCard.vue';
+import BookCard from './BookCard.vue';
+import NewBookForm from './NewBookForm.vue';
 
 export default {
+  computed: {
+    books() {
+      return this.$store.state.books;
+    }
+  },
   components: {
-    BookCard
+    BookCard,
+    NewBookForm
+    
   }
 }
 </script>

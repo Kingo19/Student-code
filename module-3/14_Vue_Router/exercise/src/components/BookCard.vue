@@ -1,34 +1,23 @@
+
+
 <template>
-  <div class="card" v-bind:class="{ read: book.read }">
+  <div class="card" :class="{ read: book.read }">
     <h2 class="book-title">{{ book.title }}</h2>
-    <img v-if="book.isbn" v-bind:src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" />
     <h3 class="book-author">{{ book.author }}</h3>
-    <div class="button-container" v-if="! enableAdd">
-      <button class="mark-read" v-on:click.prevent="setRead(true)" v-if=" ! book.read">Mark Read</button>
-      <button class="mark-unread" v-on:click.prevent="setRead(false)" v-if="book.read">Mark Unread</button>
-    </div>
-    <button v-if="enableAdd" v-on:click.prevent="addToReadingList(book)">Add to Reading List</button>
+    <img :src="'http://covers.openlibrary.org/b/isbn/' + book.isbn + '-M.jpg'" class="book-image" alt="Book Cover" />
+    <button class="mark-read" @click="toggleRead(true)" v-if="!book.read">Mark as Read</button>
+    <button class="mark-unread" @click="toggleRead(false)" v-if="book.read">Mark as Unread</button>
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    book: Object,
-    enableAdd: {
-      type: Boolean,
-      default: false
-    }
+    book: Object
   },
   methods: {
-    setRead(value) {
-      this.$store.commit('SET_READ_STATUS', { book: this.book, value: value });
-    },
-    addToReadingList(book) {
-      let addedBook = Object.assign({ read: false }, book);
-      delete addedBook.bestSeller;
-      delete addedBook.newRelease;
-      this.$store.commit('SAVE_BOOK', addedBook);
+    toggleRead(read) {
+      this.$store.commit('toggleReadStatus', { isbn: this.book.isbn, read });
     }
   }
 }
@@ -41,6 +30,7 @@ export default {
   width: 250px;
   height: 550px;
   margin: 20px;
+  position: relative;
 }
 
 .card.read {
@@ -52,6 +42,19 @@ export default {
 }
 
 .card .book-author {
+  font-size: 1rem;
+}
+
+.book-image {
+  width: 80%;
+}
+
+.mark-read, .mark-unread {
+  display: block;
+  position: absolute;
+  bottom: 40px;
+  width: 80%;
+  left: 10%;
   font-size: 1rem;
 }
 </style>
